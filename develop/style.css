@@ -1,0 +1,77 @@
+header {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(78, 78, 214, 0.51),
+    blue
+  );
+  height: 3rem;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.infobox {
+  margin-top: 1rem;
+  border-style: solid;
+  border-color: black;
+  width: 65rem;
+  float: right;
+  height: 25rem;
+}
+
+#datepicker {
+  margin-top: 2rem;
+  margin-left: 15rem;
+}
+
+p {
+  margin-left: 3rem;
+}
+
+textarea {
+  width: fit-content;
+  height: fit-content;
+}
+
+.pull {
+  border-style: solid;
+  border-color: black;
+  width: fit-content;
+}
+.container {
+  background-color: blue;
+  margin-top: 25rem;
+  height: 17rem;
+  margin-left: 29rem;
+}
+.today {
+  width: 15rem;
+  height: 15rem;
+  background-color: pink;
+  margin-left: 1rem;
+}
+.tmrw {
+  width: 15rem;
+  height: 15rem;
+  background-color: pink;
+  margin-left: 17rem;
+  margin-bottom: -10rem;
+  margin-top: -15rem;
+}
+.day3 {
+  width: 15rem;
+  height: 15rem;
+  background-color: red;
+  margin-left: 33rem;
+  margin-bottom: -10rem;
+  margin-top: -15rem;
+}
+.day4 {
+  width: 15rem;
+  height: 15rem;
+  background-color: purple;
+  margin-left: 49rem;
+  margin-bottom: -10rem;
+  margin-top: -15rem;
+}

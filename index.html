@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Around the world - My Weather APP</title>
+    <link rel="stylesheet" href="./develop/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <header>My Weather Dashboard</header>
+  </head>
+  <div class="infobox">
+    <script>
+      $(function () {
+        $("#datepicker").datepicker();
+      });
+    </script>
+
+    <input type="text" id="datepicker" value="Select a date here" />
+    <p id="temp">Temp: <textarea>something</textarea></p>
+
+    <p id="wind">Wind:<div class="pull">something</div></p>
+    <p id="Humidity">Humidity:<textarea>something</textarea></p>
+    <p id="UV Index">UV Index:<textarea>something</textarea></p>
+  </div>
+  <div class="cities">
+    <label>Search for your City</label>
+    <script>
+      $(function () {
+        var availableCities = [
+          "Austin",
+          "Chicago",
+          "New York",
+          "Orlando",
+          "San Francisco",
+          "Seattle",
+          "Denver",
+          "Atlanta",
+          "India",
+          "Pakistan",
+          "London",
+          "Canada",
+          "Russia",
+        ];
+        $("#cities").autocomplete({
+          source: availableCities,
+        });
+      });
+    </script>
+    <div class="ui-widget">
+      <input id="cities" />
+      <!-- <script>
+        $(function () {
+          $("#selectable").selectable();
+        });
+      </script>
+
+      <ol id="selectable">
+        <li class="ui-widget-content">Item 1</li>
+        <li class="ui-widget-content">Item 2</li>
+        <li class="ui-widget-content">Item 3</li>
+        <li class="ui-widget-content">Item 4</li>
+        <li class="ui-widget-content">Item 5</li>
+        <li class="ui-widget-content">Item 6</li>
+        <li class="ui-widget-content">Item 7</li>
+      </ol> -->
+    </div>
+  </div>
+  <div class="container">
+    bla
+    <div class="today">todays weather</div>
+    <div class="tmrw">tmrws weather</div>
+    <div class="day3">day3 weather</div>
+    <div class="day4">day4 weather</div>
+  </div>
+
+  <body>
+    <script src="./develop/script.js"></script>
+  </body>
+</html>
