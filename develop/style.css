@@ -56,7 +56,7 @@ textarea {
   margin-left: 29rem;
 }
 
-#myInput {
+#search {
   background-image: url("/css/searchicon.png");
   background-position: 10px 12px;
   background-repeat: no-repeat;
@@ -67,7 +67,7 @@ textarea {
   margin-bottom: 12px;
 }
 
-#myUL {
+#cityUL {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -75,7 +75,7 @@ textarea {
   background-color: purple;
 }
 
-#myUL li a {
+#cityUL li a {
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
   background-color: #f6f6f6;
@@ -87,7 +87,7 @@ textarea {
   background-color: orange;
 }
 
-#myUL li a:hover:not(.header) {
+#cityUL li a:hover:not(.header) {
   background-color: #eee;
 }
 
