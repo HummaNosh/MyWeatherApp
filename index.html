@@ -10,63 +10,44 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <header>My Weather Dashboard</header>
   </head>
+
+  <!-- Main box -->
   <div class="infobox">
     <script>
+      // brings in a date picker
       $(function () {
         $("#datepicker").datepicker();
       });
     </script>
-
+<!-- Date selector  -->
     <input type="text" id="datepicker" value="Select a date here" />
+    <!-- Where the info will go -->
     <p id="temp">Temp: <textarea>something</textarea></p>
-
     <p id="wind">Wind:<div class="pull">something</div></p>
     <p id="Humidity">Humidity:<textarea>something</textarea></p>
     <p id="UV Index">UV Index:<textarea>something</textarea></p>
   </div>
-  <div class="cities">
-    <label>Search for your City</label>
-    <script>
-      $(function () {
-        var availableCities = [
-          "Austin",
-          "Chicago",
-          "New York",
-          "Orlando",
-          "San Francisco",
-          "Seattle",
-          "Denver",
-          "Atlanta",
-          "India",
-          "Pakistan",
-          "London",
-          "Canada",
-          "Russia",
-        ];
-        $("#cities").autocomplete({
-          source: availableCities,
-        });
-      });
-    </script>
-    <div class="ui-widget">
-      <input id="cities" />
-      <!-- <script>
-        $(function () {
-          $("#selectable").selectable();
-        });
-      </script>
 
-      <ol id="selectable">
-        <li class="ui-widget-content">Item 1</li>
-        <li class="ui-widget-content">Item 2</li>
-        <li class="ui-widget-content">Item 3</li>
-        <li class="ui-widget-content">Item 4</li>
-        <li class="ui-widget-content">Item 5</li>
-        <li class="ui-widget-content">Item 6</li>
-        <li class="ui-widget-content">Item 7</li>
-      </ol> -->
-    </div>
-  </div>
+  <!-- Box with search box for cities -->
+  <div class="cities">
+    <div id="box">
+      <br>
+    <label>Search for your City</label>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for cities.." title="Type in a name">
+<!-- list of cities -->
+<ul id="myUL">
+  <li><a href="PUT THE LINK HERE">Austin</a></li>
+  <li><a href="#">Chicago</a></li>
+  <li><a href="#">New York</a></li>
+  <li><a href="#">Orlando</a></li>
+  <li><a href="#">San Francisco</a></li>
+  <li><a href="#">Pakistan</a></li>
+  <li><a href="#">London</a></li>
+</ul>
+</div>
+</div>
+
+<!-- Daily Weather -->
   <div class="container">
     bla
     <div class="today">todays weather</div>
@@ -76,6 +57,8 @@
   </div>
 
   <body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="./develop/script.js"></script>
   </body>
 </html>
+  

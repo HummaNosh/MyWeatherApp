@@ -11,6 +11,17 @@ header {
   font-size: 20px;
 }
 
+.cities {
+  background-color: pink;
+  width: 20rem;
+  height: fit-content;
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+#box {
+  margin-left: 2rem;
+}
 .infobox {
   margin-top: 1rem;
   border-style: solid;
@@ -41,10 +52,45 @@ textarea {
 }
 .container {
   background-color: blue;
-  margin-top: 25rem;
   height: 17rem;
   margin-left: 29rem;
 }
+
+#myInput {
+  background-image: url("/css/searchicon.png");
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 10rem;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+  background-color: purple;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+  background-color: orange;
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
 .today {
   width: 15rem;
   height: 15rem;
