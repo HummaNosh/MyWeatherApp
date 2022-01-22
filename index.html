@@ -8,48 +8,69 @@
     <link rel="stylesheet" href="./develop/style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./develop/style.css" />
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+  ></script>
     <header>My Weather Dashboard</header>
+    <div id ="time"><span id ="am-pm"> </span></div>
   </head>
 
   <!-- Main box -->
   <div class="infobox">
-    <script>
-      // brings in a date picker
-      $(function () {
-        $("#datepicker").datepicker();
-      });
-    </script>
+    <div id = "cityname">name</div>
+<div id="todaysdate">date</div>
 <!-- Date selector  -->
     <input type="text" id="datepicker" value="Select a date here" />
     <!-- Where the info will go -->
-    <p id="temp">Temp: <textarea>something</textarea></p>
-    <p id="wind">Wind:<div class="pull">something</div></p>
-    <p id="Humidity">Humidity:<textarea>something</textarea></p>
-    <p id="UV Index">UV Index:<textarea>something</textarea></p>
+    <p id="temp">Temp: <textarea id= "tempbox">something</textarea></p>
+    <p id="wind">Wind:<textarea id= "windbox">something</textarea></p>
+    <p id="Humidity">Humidity:<textarea id="humbox">something</textarea></p>
+    <p id="UV Index">UV Index:<textarea id ="uvbox">something</textarea></p>
   </div>
 
-  <!-- Box with search box for cities -->
-  <div class="cities">
-    <div id="box">
-      <br>
-    <label>Search for your City</label>
-    <input type="text" id="search" onkeyup="myFunction()" placeholder="Search for cities..">
-<!-- list of cities -->
-<ul id="cityUL">
-  <li><a href="PUT THE LINK HERE">Austin</a></li>
-  <li><a href="#">Chicago</a></li>
-  <li><a href="#">New York</a></li>
-  <li><a href="#">Orlando</a></li>
-  <li><a href="#">San Francisco</a></li>
-  <li><a href="#">Pakistan</a></li>
-  <li><a href="#">London</a></li>
-</ul>
-</div>
-</div>
+<br />
+<!-- NEW FORM -->
+          <form id="city-form">
+            <div class="cities">
+              <div id="box">
+                <label>Search for your City</label>
+                <input type="text" class="form-control" id="citynames" placeholder="Search for cities.." />
+              <button type="submit" value="search" id = "SearchBtn">
+                Search
+              </button>
+            </div>
+            <div class="col-6">
+              <h3>Your Searched Cities:</h3>
+              <br />
+              <ul class="list-group" id="searchedlist">
+              </ul>
+              <script>
 
+              $(function () {
+                var skillNames = [
+                  "Austin",
+                  "London",
+                  "New York",
+                  "Paris",
+                  "Islamabad",
+                  "Chicago",
+                  "Rome",
+                  "San Francisco",
+                ];
+                $("#citynames").autocomplete({
+                  source: skillNames,
+                });
+              });</script>
+</form>
+
+<button id="fetch">fetch</button>
+
+            <!-- -------------------------------------------------- -->
+            
 <!-- Daily Weather -->
-  <div class="container">
-    bla
+  <div class="Daily">
     <div class="today">todays weather</div>
     <div class="tmrw">tmrws weather</div>
     <div class="day3">day3 weather</div>
