@@ -1,74 +1,126 @@
+//
 var formEl = $("#city-form");
 var CityName = $("#citynames");
 var CityList = $("#searchedlist");
-var searchbtn = $("#SearchBtn");
-var fetchButton = document.getElementById("#fetch");
+var SearchBtn = $("#SearchBtn");
+var apikey = "ead377de503e1fdb3cf49c83815322d2";
 
 // ---------------------------------------------------------------------------------------
-var handleFormSubmit = function (event) {
+
+// SEARCH BOX, CITY LISTED AND BUTTON
+
+var SearchBoxing = function (event) {
   event.preventDefault();
 
-  var nameInput = CityName.val();
-  PrintCities(nameInput);
+  // User inputs a city in the search box, which then does the PrintCities job...
+  var NameInput = CityName.val();
+  PrintCities(NameInput);
 };
 
-formEl.on("submit", handleFormSubmit);
+SearchBtn.on("click", SearchBoxing);
 
-// Cities go in list form
+// Cities to be printed in a list...
+
 var PrintCities = function (name) {
   var listEl = $("<li>");
   var listDetail = name.concat(" ");
   listEl.addClass("list-group-item").text(listDetail);
   listEl.appendTo(CityList);
+  console.log("button clicked");
 };
 
+// -----------------------------------------------------------------------------------
+
+// Searched cities, turned into buttons that will take them to information they want...
+
+$(document).on("click", "li", function () {
+  var PickCity = $(this).text();
+  Weather(PickCity);
+});
+
+function GrabInfo(para1, para2, para3, para4, para5) {
+  $("#cityname").text(para1 + " - " + para2);
+  $("#tempbox").text(para3 + " °F");
+  $("#humbox").text(para4 + " %");
+  $("#windbox").text(para5 + " mph");
+}
+
+//Grab info from open weather API..
+
+function Weather(para1) {
+  var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${para1}&appid=${apikey}`;
+
+  fetch(apiurl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        Display();
+        var CityMain = data["name"];
+        var Temp = data["main"]["temp"];
+        var Humidity = data["main"]["humidity"];
+        var Wind = data["wind"]["speed"];
+        var Date = moment().format("MMMM Do YYYY");
+
+        GrabInfo(cityMain, Date, Temp, Humidity, Wind);
+
+        console.log(cityMain);
+
+        function Display() {
+          var Citynameurl = `https://api.openweathermap.org/data/2.5/weather?q=${CityMain}&appid=${apikey}`;
+          fetch(Citynameurl).then(function (response) {
+            response.json();
+          });
+        }
+      });
+    }
+  });
+}
 // ------------------------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------------------
 // do local storage --
 
 // GIVES ME UVI BUT I HAVE TO ENTER CITY LONGITUDE AND LATITUDE
-getApi();
-function getApi() {
-  navigator.geolocation.getCurrentPosition((success) => {
-    let { latitude, longitude } = success.coords;
+// getApi();
+// function getApi() {
+//   navigator.geolocation.getCurrentPosition((success) => {
+//     let { latitude, longitude } = success.coords;
 
-    fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=40.7648&lon=-73.9808&units=metrics&appid=ead377de503e1fdb3cf49c83815322d2`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+//     fetch(
+//       `https://api.openweathermap.org/data/2.5/onecall?lat=40.7648&lon=-73.9808&units=metrics&appid=ead377de503e1fdb3cf49c83815322d2`
+//     )
+//       .then((res) => res.json())
+//       .then((data) => {
+//         console.log(data);
 
-        var cityvalue = data["timezone"];
-        console.log(cityvalue);
+//         var cityvalue = data["timezone"];
+//         console.log(cityvalue);
 
-        var humidityEl = data["current"]["humidity"];
-        console.log(humidityEl);
+//         var humidityEl = data["current"]["humidity"];
+//         console.log(humidityEl);
 
-        var tempvalue = data["current"]["temp"];
-        console.log(tempvalue);
+//         var tempvalue = data["current"]["temp"];
+//         console.log(tempvalue);
 
-        var windvalue = data["current"]["wind_speed"];
-        console.log(windvalue);
+//         var windvalue = data["current"]["wind_speed"];
+//         console.log(windvalue);
 
-        var uvvalue = data["current"]["uvi"];
-        console.log(uvvalue);
+//         var uvvalue = data["current"]["uvi"];
+//         console.log(uvvalue);
 
-        var Info = document.querySelector("#cityname");
-        var Temp = document.querySelector("#tempbox");
-        var Wind = document.querySelector("#windbox");
-        var humidity = document.querySelector("#humbox");
-        var UV = document.querySelector("#uvbox");
+//         var Info = document.querySelector("#cityname");
+//         var Temp = document.querySelector("#tempbox");
+//         var Wind = document.querySelector("#windbox");
+//         var humidity = document.querySelector("#humbox");
+//         var UV = document.querySelector("#uvbox");
 
-        Info.innerHTML = cityvalue;
-        Temp.innerHTML = tempvalue;
-        Wind.innerHTML = windvalue;
-        humidity.innerHTML = humidityEl;
-        UV.innerHTML = uvvalue;
-      });
-  });
-}
+//         Info.innerHTML = cityvalue;
+//         Temp.innerHTML = tempvalue;
+//         Wind.innerHTML = windvalue;
+//         humidity.innerHTML = humidityEl;
+//         UV.innerHTML = uvvalue;
+//       });
+//   });
+// }
 
 // DO I HAVE TO LINK PER FETCH PER CITY
 

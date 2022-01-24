@@ -45,27 +45,36 @@
               <h3>Your Searched Cities:</h3>
               <br />
               <ul class="list-group" id="searchedlist">
+            
               </ul>
               <script>
 
+// Drop down auto options....
               $(function () {
                 var skillNames = [
                   "Austin",
+                  "Aberdeen",
+                  "Liverpool",
+                  "Glasgow",
+                  "Birmingham",
+                  "Manchester",
+                  "Essex",
+                  "Tokyo",
                   "London",
                   "New York",
                   "Paris",
                   "Islamabad",
+                  "New Delhi",
                   "Chicago",
                   "Rome",
                   "San Francisco",
+                  "Denver",
                 ];
                 $("#citynames").autocomplete({
                   source: skillNames,
                 });
               });</script>
 </form>
-
-<button id="fetch">fetch</button>
 
             <!-- -------------------------------------------------- -->
             
