@@ -20,10 +20,9 @@ var SearchBoxing = function (event) {
 SearchBtn.on("click", SearchBoxing);
 
 // Cities to be printed in a list...
-
 var PrintCities = function (name) {
   var listEl = $("<li>");
-  var listDetail = name.concat(" ");
+  var listDetail = name.concat("");
   listEl.addClass("list-group-item").text(listDetail);
   listEl.appendTo(CityList);
   console.log("button clicked");
@@ -38,11 +37,13 @@ $(document).on("click", "li", function () {
   Weather(PickCity);
 });
 
+// The below decide where each parameter will be printed..
 function GrabInfo(para1, para2, para3, para4, para5) {
-  $("#cityname").text(para1 + " - " + para2);
+  $("#cityname").text(para1);
+  $("#todaysdate").text(para2);
   $("#tempbox").text(para3 + " °F");
-  $("#humbox").text(para4 + " %");
   $("#windbox").text(para5 + " mph");
+  $("#humbox").text(para4 + " %");
 }
 
 //Grab info from open weather API..
@@ -53,27 +54,23 @@ function Weather(para1) {
   fetch(apiurl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        Display();
+        // Each parameter based on 'position' in url.., as a variable for line 65
         var CityMain = data["name"];
         var Temp = data["main"]["temp"];
         var Humidity = data["main"]["humidity"];
         var Wind = data["wind"]["speed"];
         var Date = moment().format("MMMM Do YYYY");
 
-        GrabInfo(CityMain, Date, Temp, Humidity, Wind);
+        // variables/parameters displayed as described in function Grabinfo
+        GrabInfo(CityMain, Date, Temp, Wind, Humidity);
 
         console.log(CityMain);
-
-        function Display() {
-          var Citynameurl = `https://api.openweathermap.org/data/2.5/weather?q=${CityMain}&appid=${apikey}`;
-          fetch(Citynameurl).then(function (response) {
-            response.json();
-          });
-        }
+        console.log(Date);
       });
     }
   });
 }
+
 // ------------------------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------------------
@@ -121,8 +118,6 @@ function Weather(para1) {
 //       });
 //   });
 // }
-
-// DO I HAVE TO LINK PER FETCH PER CITY
 
 // HAVE TO JUST CHANGE CITY NAME BUT NO UVI
 
