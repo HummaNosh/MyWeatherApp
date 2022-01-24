@@ -60,9 +60,9 @@ function Weather(para1) {
         var Wind = data["wind"]["speed"];
         var Date = moment().format("MMMM Do YYYY");
 
-        GrabInfo(cityMain, Date, Temp, Humidity, Wind);
+        GrabInfo(CityMain, Date, Temp, Humidity, Wind);
 
-        console.log(cityMain);
+        console.log(CityMain);
 
         function Display() {
           var Citynameurl = `https://api.openweathermap.org/data/2.5/weather?q=${CityMain}&appid=${apikey}`;
