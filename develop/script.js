@@ -26,6 +26,7 @@ var PrintCities = function (name) {
   listEl.addClass("list-group-item").text(listDetail);
   listEl.appendTo(CityList);
   console.log("button clicked");
+  // --------------------------------------------------------
 };
 
 // -----------------------------------------------------------------------------------
@@ -41,9 +42,9 @@ $(document).on("click", "li", function () {
 function GrabInfo(para1, para2, para3, para4, para5) {
   $("#cityname").text(para1);
   $("#todaysdate").text(para2);
-  $("#tempbox").text(para3 + " °F");
-  $("#windbox").text(para5 + " mph");
-  $("#humbox").text(para4 + " %");
+  $("#tempbox").text("Temperature : " + para3 + " °F");
+  $("#windbox").text("Wind : " + para5 + " MPH");
+  $("#humbox").text("Humidity : " + para4 + " %");
 }
 
 //Grab info from open weather API..
@@ -54,6 +55,7 @@ function Weather(para1) {
   fetch(apiurl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        Display();
         // Each parameter based on 'position' in url.., as a variable for line 65
         var CityMain = data["name"];
         var Temp = data["main"]["temp"];
@@ -66,11 +68,36 @@ function Weather(para1) {
 
         console.log(CityMain);
         console.log(Date);
+        // ------------------------------------------------------------------------------------------------------
+      });
+    }
+
+    function some(para1, para2, para3) {
+      $("#forecast").text(para1);
+      $("#tempforecast").text(para2);
+      $("#humforecast").text(para3);
+    }
+    function Display(CityMain) {
+      var url = `https://api.openweathermap.org/data/2.5/forecast?q=${CityMain}&appid=${apikey}`;
+
+      fetch(url).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (data) {
+            // for (i = 0; i < data.list.length; i++) {
+            var datefore = moment.unix(data.dt);
+            var foretemp = data["main"]["temp"];
+            var forehum = data["main"]["humidity"];
+
+            some(datefore, foretemp, forehum);
+
+            console.log(datefore);
+            console.log(foretemp);
+          });
+        }
       });
     }
   });
 }
-
 // ------------------------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------------------

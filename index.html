@@ -13,19 +13,20 @@
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
   ></script>
+
     <header>My Weather Dashboard</header>
     <div id ="time"><span id ="am-pm"> </span></div>
   </head>
 
   <!-- Main box -->
   <div class="infobox">
-    <div id = "cityname">name</div>
-<div id="todaysdate">date</div>
+    <div class = "infodetails" id = "cityname"></div>
+<div class = "infodetails" id="todaysdate"></div>
     <!-- Where the info will go -->
-    <p id="temp">Temp: <textarea id= "tempbox">something</textarea></p>
-    <p id="wind">Wind:<textarea id= "windbox">something</textarea></p>
-    <p id="Humidity">Humidity:<textarea id="humbox">something</textarea></p>
-    <p id="UV Index">UV Index:<textarea id ="uvbox">something</textarea></p>
+    <p id="temp"> <div class = "infodetail" id= "tempbox"></div></p>
+    <p id="wind"><div class = "infodetail" id= "windbox"></div></p>
+    <p id="Humidity"><div class = "infodetail" id="humbox"></div></p>
+    <p id="UV Index">UV Index:<textarea  class = "infodetail" id ="uvbox"></textarea></p>
   </div>
 
 <br />
@@ -33,21 +34,25 @@
           <form id="city-form">
             <div class="cities">
               <div id="box">
-                <label>Search for your City</label>
+                <h2>Search for your City</h2>
                 <input type="text" class="form-control" id="citynames" placeholder="Search for cities.." />
               <button type="submit" value="search" id = "SearchBtn">
                 Search
               </button>
             </div>
-            <div class="col-6">
+            
               <h3>Your Searched Cities:</h3>
               <br />
               <ul class="list-group" id="searchedlist">
             
               </ul>
-              <script>
+              </div>
+              </div>
+              </form>
+              
 
-// Drop down auto options....
+<!-- // Drop down auto options.... -->
+<script>
               $(function () {
                 var skillNames = [
                   "Austin",
@@ -77,15 +82,27 @@
             <!-- -------------------------------------------------- -->
             
 <!-- Daily Weather -->
-  <div class="Daily">
-    <div class="today">todays weather</div>
-    <div class="tmrw">tmrws weather</div>
-    <div class="day3">day3 weather</div>
-    <div class="day4">day4 weather</div>
+  <div id="Daily">
+    <div id="forecast">todays weather
+      <div id="tempforecast"></div>
+      <div id="humforecast"></div>
+    </div>
+    <div class="forecast">tmrws weather
+      <div class="tempforecast"></div>
+      <div class="humforecast"></div>
+    </div>
+    <div class="forecast">day3 weather
+       <div class="tempforecast"></div>
+      <div class="humforecast"></div>
+    </div>
+    <div class="forecast">day4 weather
+      <div class="tempforecast"></div>
+      <div class="humforecast"></div>
+    </div>
   </div>
 
   <body>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <script src="./develop/script.js"></script>
   </body>
 </html>
