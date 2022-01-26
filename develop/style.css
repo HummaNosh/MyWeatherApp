@@ -74,7 +74,7 @@ textarea {
   flex-direction: column;
   background-color: blue;
   width: 12rem;
-  height: 19rem;
+  height: 21rem;
   padding: 0;
   margin-left: 55rem;
   margin-top: -45rem;
@@ -86,40 +86,40 @@ textarea {
   display: flex;
   flex-direction: column;
   width: 12rem;
-  height: 19rem;
+  height: 21rem;
   border: dashed black;
   margin-left: 68rem;
-  margin-top: -19.4rem;
+  margin-top: -21.4rem;
 }
 #Daily3 {
   background-color: yellow;
   display: flex;
   flex-direction: column;
   width: 12rem;
-  height: 19rem;
+  height: 21rem;
   border: dashed black;
   margin-left: 81rem;
-  margin-top: -19.4rem;
+  margin-top: -21.4rem;
 }
 #Daily4 {
   background-color: green;
   display: flex;
   flex-direction: column;
   width: 12rem;
-  height: 19rem;
+  height: 21rem;
   border: dashed black;
   margin-left: 61rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 #Daily5 {
   background-color: grey;
   display: flex;
   flex-direction: column;
   width: 12rem;
-  height: 19rem;
+  height: 21rem;
   border: dashed black;
   margin-left: 75rem;
-  margin-top: -19.4rem;
+  margin-top: -21.4rem;
 }
 .forecast {
   background-color: purple;
@@ -156,6 +156,14 @@ textarea {
   font-size: 20px;
   height: 2rem;
   text-align: center;
+  margin-left: 1rem;
+}
+
+.windforecast {
+  background-color: brown;
+  height: 2rem;
+  width: 10rem;
+  font-size: 20px;
   margin-left: 1rem;
 }
 

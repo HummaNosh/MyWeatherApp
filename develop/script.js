@@ -26,6 +26,7 @@ var PrintCities = function (name) {
   listEl.addClass("list-group-item").text(listDetail);
   listEl.appendTo(CityList);
   console.log("button clicked");
+
   // --------------------------------------------------------
 };
 
@@ -42,9 +43,9 @@ $(document).on("click", "li", function () {
 function GrabInfo(para1, para2, para3, para4, para5, para6) {
   $("#cityname").text(para1);
   $("#todaysdate").text(para2);
-  $("#tempbox").text(para3 + "");
-  $("#windbox").text("Wind : " + para5 + " MPH");
-  $("#humbox").text("Humidity : " + para4 + " %");
+  $("#tempbox").text(para3 + "C");
+  $("#windbox").text("Wind : " + para4 + " MPH");
+  $("#humbox").text("Humidity : " + para5 + " %");
   $("#iconbox").text(para6);
 }
 
@@ -78,11 +79,12 @@ function Weather(para1) {
     function some(para1, para2, para3, para4, para5) {
       $(".forecast").text(para1 + para5);
       $(".datefore").text(para2);
-      $(".tempforecast").text(para3);
-      $(".humforecast").text(para4);
+      $(".tempforecast").text(para3 + "C");
+      $(".humforecast").text("Hum : " + para4 + "%");
+      $(".windforecast").text("Wind : " + para5 + " MPH");
     }
     function Display(para1) {
-      var url = `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&appid=${apikey}`;
+      var url = `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&units=metric&appid=${apikey}`;
 
       fetch(url).then(function (response) {
         if (response.ok) {
@@ -93,9 +95,10 @@ function Weather(para1) {
               var foretemp = data.list[0]["main"]["temp"];
               // do wind
               var forehum = data.list[0]["main"]["humidity"];
+              var forewind = data.list[0]["wind"]["speed"];
               var icons = data.list[0].weather[0]["icon"];
 
-              some(Cityname, datefore, foretemp, forehum, icons);
+              some(Cityname, datefore, foretemp, forehum, forewind, icons);
               console.log(icons);
 
               console.log(data);
