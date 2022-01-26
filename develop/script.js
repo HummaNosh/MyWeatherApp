@@ -39,12 +39,13 @@ $(document).on("click", "li", function () {
 });
 
 // The below decide where each parameter will be printed..
-function GrabInfo(para1, para2, para3, para4, para5) {
+function GrabInfo(para1, para2, para3, para4, para5, para6) {
   $("#cityname").text(para1);
   $("#todaysdate").text(para2);
-  $("#tempbox").text("Temperature : " + para3 + "");
+  $("#tempbox").text(para3 + "");
   $("#windbox").text("Wind : " + para5 + " MPH");
   $("#humbox").text("Humidity : " + para4 + " %");
+  $("#iconbox").text(para6);
 }
 
 //Grab info from open weather API..
@@ -58,26 +59,27 @@ function Weather(para1) {
         Display(para1);
         // Each parameter based on 'position' in url.., as a variable for line 65
         var CityMain = data["name"];
-        var Temp = data["main"]["temp"];
-        var Humidity = data["main"]["humidity"];
-        var Wind = data["wind"]["speed"];
         var Date = moment().format("MMMM Do YYYY");
-
+        var Temp = data["main"]["temp"];
+        var Wind = data["wind"]["speed"];
+        var Humidity = data["main"]["humidity"];
+        var icon = data.weather[0]["icon"];
         // variables/parameters displayed as described in function Grabinfo
-        GrabInfo(CityMain, Date, Temp, Wind, Humidity);
-
+        GrabInfo(CityMain, Date, Temp, Wind, Humidity, icon);
+        console.log(icon);
         console.log(CityMain);
         console.log(Date);
+        console.log(data);
 
         // ------------------------------------------------------------------------------------------------------
       });
     }
 
-    function some(para1, para2, para3, para4) {
-      $("#forecast").text(para1);
-      $("#datefore").text(para2);
-      $("#tempforecast").text(para3);
-      $("#humforecast").text(para4);
+    function some(para1, para2, para3, para4, para5) {
+      $(".forecast").text(para1 + para5);
+      $(".datefore").text(para2);
+      $(".tempforecast").text(para3);
+      $(".humforecast").text(para4);
     }
     function Display(para1) {
       var url = `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&appid=${apikey}`;
@@ -85,18 +87,21 @@ function Weather(para1) {
       fetch(url).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
-            // for (i = 0; i < data.list.length; i++) {
-            var Cityname = data["city"]["name"];
-            var datefore = moment.unix(data.list[0].dt);
-            var foretemp = data.list[0]["main"]["temp"];
-            var forehum = data.list[0]["main"]["humidity"];
+            for (i = 0; i < 5; i++) {
+              var Cityname = data["city"]["name"];
+              var datefore = moment.unix(data.list[0].dt);
+              var foretemp = data.list[0]["main"]["temp"];
+              // do wind
+              var forehum = data.list[0]["main"]["humidity"];
+              var icons = data.list[0].weather[0]["icon"];
 
-            some(Cityname, datefore, foretemp, forehum);
-
-            console.log(data);
-            console.log(datefore);
-            console.log(foretemp);
-            console.log(forehum);
+              some(Cityname, datefore, foretemp, forehum, icons);
+              console.log(icons);
+              console.log(data);
+              console.log(datefore);
+              console.log(foretemp);
+              console.log(forehum);
+            }
           });
         }
       });

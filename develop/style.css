@@ -8,7 +8,7 @@ header {
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 body {
@@ -40,6 +40,26 @@ body {
   margin-left: 25rem;
 }
 
+#cityname {
+  font-size: 55px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#iconbox {
+  margin-left: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#tempbox {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
 p {
   margin-left: 3rem;
 }
@@ -52,47 +72,91 @@ textarea {
 #Daily {
   display: flex;
   flex-direction: column;
-  /* background-color: blue; */
-  width: 20rem;
-  height: 30rem;
+  background-color: blue;
+  width: 12rem;
+  height: 19rem;
   padding: 0;
-  margin-left: 70rem;
+  margin-left: 55rem;
   margin-top: -45rem;
+  border: dashed black;
 }
 
-#forecast {
-  background-color: purple;
-  height: 1rem;
-}
-
-#datefore {
+#Daily2 {
   background-color: orange;
-  height: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  height: 19rem;
+  border: dashed black;
+  margin-left: 68rem;
+  margin-top: -19.4rem;
 }
-
-#tempforecast {
-  background-color: white;
-  height: 1rem;
+#Daily3 {
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  height: 19rem;
+  border: dashed black;
+  margin-left: 81rem;
+  margin-top: -19.4rem;
 }
-
-#humforecast {
-  background-color: pink;
-  height: 1rem;
+#Daily4 {
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  height: 19rem;
+  border: dashed black;
+  margin-left: 61rem;
+  margin-top: 2rem;
 }
-
+#Daily5 {
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  height: 19rem;
+  border: dashed black;
+  margin-left: 75rem;
+  margin-top: -19.4rem;
+}
 .forecast {
+  background-color: purple;
+  height: 8rem;
+  width: 10rem;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 1rem;
+  word-wrap: break-word;
+  margin-left: 1rem;
+}
+
+.datefore {
   background-color: orange;
-  height: 20rem;
+  width: 10rem;
+  font-size: 20px;
+  height: 5rem;
+  text-align: center;
+  margin-left: 1rem;
 }
 
 .tempforecast {
-  background-color: red;
-  height: 10rem;
+  background-color: white;
+  width: 10rem;
+  font-size: 20px;
+  height: 2rem;
+  text-align: center;
+  margin-left: 1rem;
 }
 
 .humforecast {
   background-color: pink;
+  width: 10rem;
+  font-size: 20px;
   height: 2rem;
+  text-align: center;
+  margin-left: 1rem;
 }
 
 #citynames {
@@ -107,7 +171,8 @@ textarea {
 }
 
 .list-group-item {
-  background-color: pink;
+  background-color: white;
+  color: black;
   width: 15rem;
   height: 2rem;
   border-radius: 1rem;
@@ -116,6 +181,7 @@ textarea {
   border: 2px solid #ddd;
   font-size: 20px;
   padding-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .list-group-item li:hover() {
@@ -145,6 +211,13 @@ h2 {
   border: none;
   font-size: 30px;
   font-weight: bold;
+}
+
+#iconbox {
+  background-color: yellow;
+  height: 5rem;
+  width: 5rem;
+  color: black;
 }
 /* .today {
   width: 15rem;
