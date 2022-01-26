@@ -60,6 +60,26 @@ textarea {
   margin-top: -45rem;
 }
 
+#forecast {
+  background-color: purple;
+  height: 1rem;
+}
+
+#datefore {
+  background-color: orange;
+  height: 1rem;
+}
+
+#tempforecast {
+  background-color: white;
+  height: 1rem;
+}
+
+#humforecast {
+  background-color: pink;
+  height: 1rem;
+}
+
 .forecast {
   background-color: orange;
   height: 20rem;

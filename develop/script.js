@@ -42,7 +42,7 @@ $(document).on("click", "li", function () {
 function GrabInfo(para1, para2, para3, para4, para5) {
   $("#cityname").text(para1);
   $("#todaysdate").text(para2);
-  $("#tempbox").text("Temperature : " + para3 + " °F");
+  $("#tempbox").text("Temperature : " + para3 + "");
   $("#windbox").text("Wind : " + para5 + " MPH");
   $("#humbox").text("Humidity : " + para4 + " %");
 }
@@ -55,7 +55,7 @@ function Weather(para1) {
   fetch(apiurl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        Display();
+        Display(para1);
         // Each parameter based on 'position' in url.., as a variable for line 65
         var CityMain = data["name"];
         var Temp = data["main"]["temp"];
@@ -68,36 +68,45 @@ function Weather(para1) {
 
         console.log(CityMain);
         console.log(Date);
+
         // ------------------------------------------------------------------------------------------------------
       });
     }
 
-    function some(para1, para2, para3) {
+    function some(para1, para2, para3, para4) {
       $("#forecast").text(para1);
-      $("#tempforecast").text(para2);
-      $("#humforecast").text(para3);
+      $("#datefore").text(para2);
+      $("#tempforecast").text(para3);
+      $("#humforecast").text(para4);
     }
-    function Display(CityMain) {
-      var url = `https://api.openweathermap.org/data/2.5/forecast?q=${CityMain}&appid=${apikey}`;
+    function Display(para1) {
+      var url = `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&appid=${apikey}`;
 
       fetch(url).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
             // for (i = 0; i < data.list.length; i++) {
-            var datefore = moment.unix(data.dt);
-            var foretemp = data["main"]["temp"];
-            var forehum = data["main"]["humidity"];
+            var Cityname = data["city"]["name"];
+            var datefore = moment.unix(data.list[0].dt);
+            var foretemp = data.list[0]["main"]["temp"];
+            var forehum = data.list[0]["main"]["humidity"];
 
-            some(datefore, foretemp, forehum);
+            some(Cityname, datefore, foretemp, forehum);
 
+            console.log(data);
             console.log(datefore);
             console.log(foretemp);
+            console.log(forehum);
           });
         }
       });
     }
   });
 }
+
+// USE UNITS METRCI TO CHANGE whole figure
+
+// ["list"]["main"]["temp"];
 // ------------------------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------------------
