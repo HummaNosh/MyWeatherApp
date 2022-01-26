@@ -51,7 +51,7 @@ function GrabInfo(para1, para2, para3, para4, para5, para6) {
 //Grab info from open weather API..
 
 function Weather(para1) {
-  var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${para1}&appid=${apikey}`;
+  var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${para1}&units=metric&appid=${apikey}`;
 
   fetch(apiurl).then(function (response) {
     if (response.ok) {
@@ -97,10 +97,19 @@ function Weather(para1) {
 
               some(Cityname, datefore, foretemp, forehum, icons);
               console.log(icons);
+
               console.log(data);
               console.log(datefore);
               console.log(foretemp);
               console.log(forehum);
+
+              // function ICON(I1) {
+              //   var iconurl = `http://openweathermap.org/weather.icon=${I1}`;
+
+              //   something(iconurl);
+              //   console.log(iconurl);
+              //   ICON(I1);
+              // }
             }
           });
         }
