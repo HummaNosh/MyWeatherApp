@@ -16,8 +16,21 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+p {
+  margin-left: 3rem;
+}
+
+h3 {
+  font-size: 20px;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
 .cities {
-  /* background-color: pink; */
   width: 20rem;
   height: 45rem;
   margin-top: -32rem;
@@ -28,13 +41,7 @@ body {
 }
 
 .infobox {
-  /* background-image: url("./Naturebackground.jpg");
-  background-size: cover;
-  background-repeat: no-repeat; */
-  /* border-style: solid;
-  border-color: black; */
-  /* background-color: orange; */
-  width: 40rem;
+  width: 20rem;
   height: 30rem;
   margin-top: 2rem;
   margin-left: 25rem;
@@ -46,11 +53,22 @@ body {
   text-align: center;
 }
 
-#iconbox {
-  margin-left: 5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.infodetail {
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  font-size: 20px;
 }
+.infodetails {
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 #tempbox {
   font-size: 50px;
   font-weight: bold;
@@ -60,15 +78,21 @@ body {
   margin-bottom: 1rem;
 }
 
-p {
+#iconbox {
+  background-color: yellow;
+  height: 5rem;
   margin-left: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 5rem;
+  color: black;
 }
-
 textarea {
   width: fit-content;
   height: fit-content;
 }
 
+/* FORECAST BOXES */
 #Daily {
   display: flex;
   flex-direction: column;
@@ -167,6 +191,8 @@ textarea {
   margin-left: 1rem;
 }
 
+/* ---------------------------------------------------------------------------------------- */
+
 #citynames {
   width: 10rem;
   font-size: 20px;
@@ -174,7 +200,7 @@ textarea {
   margin-top: 1rem;
   margin-left: 1rem;
   padding: 12px 20px 12px 40px;
-  background-color: red;
+  background-color: rgb(67, 140, 67);
   color: white;
 }
 
@@ -186,74 +212,8 @@ textarea {
   border-radius: 1rem;
   list-style-type: none;
   text-align: center;
-  border: 2px solid #ddd;
+  border: 2px dashed black;
   font-size: 20px;
   padding-top: 1rem;
   margin-top: 0.5rem;
 }
-
-.list-group-item li:hover() {
-  background-color: #eee;
-}
-
-h3 {
-  font-size: 20px;
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
-}
-
-.infodetail {
-  color: white;
-  width: fit-content;
-  height: fit-content;
-  border: none;
-  font-size: 20px;
-}
-.infodetails {
-  color: white;
-  width: fit-content;
-  height: fit-content;
-  border: none;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-#iconbox {
-  background-color: yellow;
-  height: 5rem;
-  width: 5rem;
-  color: black;
-}
-/* .today {
-  width: 15rem;
-  height: 15rem;
-  background-color: pink;
-  margin-left: 1rem;
-}
-.tmrw {
-  width: 15rem;
-  height: 15rem;
-  background-color: pink;
-  margin-left: 17rem;
-  margin-bottom: -10rem;
-  margin-top: -15rem;
-}
-.day3 {
-  width: 15rem;
-  height: 15rem;
-  background-color: red;
-  margin-left: 33rem;
-  margin-bottom: -10rem;
-  margin-top: -5rem;
-}
-.day4 {
-  width: 15rem;
-  height: 15rem;
-  background-color: purple;
-  margin-left: 49rem;
-  margin-bottom: -10rem;
-  margin-top: -5rem;
-} */

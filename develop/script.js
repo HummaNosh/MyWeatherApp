@@ -1,9 +1,15 @@
-//
+//Variables..
+
 var formEl = $("#city-form");
 var CityName = $("#citynames");
 var CityList = $("#searchedlist");
 var SearchBtn = $("#SearchBtn");
+var searchedlist = $("#searchedlist");
 var apikey = "ead377de503e1fdb3cf49c83815322d2";
+let Storage = localStorage.getItem("searchedlist")
+  ? JSON.parse(localStorage.getItem("searchedlist"))
+  : [];
+console.log(Storage);
 
 // ---------------------------------------------------------------------------------------
 
@@ -17,6 +23,7 @@ var SearchBoxing = function (event) {
   PrintCities(NameInput);
 };
 
+// Search buttons job:
 SearchBtn.on("click", SearchBoxing);
 
 // Cities to be printed in a list...
@@ -27,13 +34,45 @@ var PrintCities = function (name) {
   listEl.appendTo(CityList);
   console.log("button clicked");
 
-  // --------------------------------------------------------
+  // Dont forget to 'store locally' when clicking this button...
+  history();
+};
+
+// -----------------------------------------------------------------------------------
+
+// LOCAL STORAGE
+
+// Picks up the value of user input in search box...
+function history() {
+  Storage.push(CityName.value);
+  localStorage.setItem("searchedlist", JSON.stringify(Storage));
+  listBuilder(CityName.value);
+  CityName.value = "";
+}
+// Create a list of last searched items with a delete button..
+let listBuilder = (text) => {
+  var cityEl = document.createElement("li");
+  cityEl.innerHTML = text + ' <button onclick="deleteNote(this)">x</button>';
+  searchedlist.append(cityEl);
+};
+// Save items even after refreshing through looping..
+let getNotes = JSON.parse(localStorage.getItem("searchedlist"));
+getNotes.forEach((cityEl) => {
+  listBuilder(cityEl);
+});
+
+// Deleting the last searched via button..
+let deleteNote = (btn) => {
+  let btnEl = btn.parentNode;
+  let index = [...btnEl.parentElement.children].indexOf(btnEl);
+  Storage.splice(index, 1);
+  localStorage.setItem("searchedlist", JSON.stringify(Storage));
+  btnEl.remove();
 };
 
 // -----------------------------------------------------------------------------------
 
 // Searched cities, turned into buttons that will take them to information they want...
-
 $(document).on("click", "li", function () {
   var PickCity = $(this).text();
   Weather(PickCity);
@@ -49,8 +88,7 @@ function GrabInfo(para1, para2, para3, para4, para5, para6) {
   $("#iconbox").text(para6);
 }
 
-//Grab info from open weather API..
-
+//Grabbing info from open weather API..
 function Weather(para1) {
   var apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${para1}&units=metric&appid=${apikey}`;
 
@@ -58,24 +96,28 @@ function Weather(para1) {
     if (response.ok) {
       response.json().then(function (data) {
         Display(para1);
-        // Each parameter based on 'position' in url.., as a variable for line 65
+        // Each parameter based on 'position' in url..
         var CityMain = data["name"];
         var Date = moment().format("MMMM Do YYYY");
         var Temp = data["main"]["temp"];
         var Wind = data["wind"]["speed"];
         var Humidity = data["main"]["humidity"];
         var icon = data.weather[0]["icon"];
-        // variables/parameters displayed as described in function Grabinfo
+
+        // Variables/parameters displayed as described in function Grabinfo
         GrabInfo(CityMain, Date, Temp, Wind, Humidity, icon);
         console.log(icon);
         console.log(CityMain);
         console.log(Date);
         console.log(data);
-
-        // ------------------------------------------------------------------------------------------------------
       });
     }
 
+    // ------------------------------------------------------------------------------------------------------
+
+    // 5 DAY FORECAST
+
+    // The below decide where each parameter will be printed..
     function some(para1, para2, para3, para4, para5) {
       $(".forecast").text(para1 + para5);
       $(".datefore").text(para2);
@@ -83,6 +125,8 @@ function Weather(para1) {
       $(".humforecast").text("Hum : " + para4 + "%");
       $(".windforecast").text("Wind : " + para5 + " MPH");
     }
+
+    //Grabbing info from open weather 5 Day forecast API..
     function Display(para1) {
       var url = `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&units=metric&appid=${apikey}`;
 
@@ -93,26 +137,26 @@ function Weather(para1) {
               var Cityname = data["city"]["name"];
               var datefore = moment.unix(data.list[0].dt);
               var foretemp = data.list[0]["main"]["temp"];
-              // do wind
               var forehum = data.list[0]["main"]["humidity"];
               var forewind = data.list[0]["wind"]["speed"];
               var icons = data.list[0].weather[0]["icon"];
 
+              // Variables/parameters displayed as described in function Grabinfo
               some(Cityname, datefore, foretemp, forehum, forewind, icons);
               console.log(icons);
-
               console.log(data);
               console.log(datefore);
               console.log(foretemp);
               console.log(forehum);
 
-              // function ICON(I1) {
-              //   var iconurl = `http://openweathermap.org/weather.icon=${I1}`;
-
-              //   something(iconurl);
-              //   console.log(iconurl);
-              //   ICON(I1);
-              // }
+              // ICON
+              let weathicon = document.createElement("img");
+              weathicon.setAttribute(
+                "src",
+                "https://openweathermap.org/img/wn/" +
+                  data.list[0].weather[0]["icon"] +
+                  "@2x.png"
+              );
             }
           });
         }
