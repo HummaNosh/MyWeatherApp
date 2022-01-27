@@ -4,7 +4,7 @@ var formEl = $("#city-form");
 var CityName = $("#citynames");
 var CityList = $("#searchedlist");
 var SearchBtn = $("#SearchBtn");
-var searchedlist = $("#searchedlist");
+// var searchedlist = $("#searchedlist");
 var apikey = "ead377de503e1fdb3cf49c83815322d2";
 let Storage = localStorage.getItem("searchedlist")
   ? JSON.parse(localStorage.getItem("searchedlist"))
@@ -53,7 +53,7 @@ function history() {
 let listBuilder = (text) => {
   var cityEl = document.createElement("li");
   cityEl.innerHTML = text + ' <button onclick="deleteNote(this)">x</button>';
-  searchedlist.append(cityEl);
+  CityList.append(cityEl);
 };
 // Save items even after refreshing through looping..
 let getNotes = JSON.parse(localStorage.getItem("searchedlist"));
@@ -165,7 +165,33 @@ function Weather(para1) {
   });
 }
 
-// USE UNITS METRCI TO CHANGE whole figure
+// function trying() {
+//   let lat = data["coord"]["lat"];
+//   let lon = data.coord["lon"];
+
+//   let UVQueryURL =
+//     "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" +
+//     lat +
+//     "&lon=" +
+//     lon +
+//     "&appid=" +
+//     apikey +
+//     "&cnt=1";
+//   axios.get(UVQueryURL);
+
+//   fetch(UVQueryURL).then(function (response) {
+//     if (response.ok) {
+//       response.json().then(function (data) {
+//         let UVIndex = document.getElementById("uvbox");
+//         UVIndex.innerHTML = data[0].value;
+//         currentUVEl.innerHTML = "UV Index: ";
+//         currentUVEl.append(UVIndex);
+
+//         console.log(UVQueryURL);
+//       });
+//     }
+//   });
+// }
 
 // ["list"]["main"]["temp"];
 // ------------------------------------------------------------------------------------------
