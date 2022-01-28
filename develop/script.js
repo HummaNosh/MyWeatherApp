@@ -6,6 +6,8 @@ var CityList = $("#searchedlist");
 var SearchBtn = $("#SearchBtn");
 // var searchedlist = $("#searchedlist");
 var apikey = "ead377de503e1fdb3cf49c83815322d2";
+var iconsection = $(".iconfore");
+
 let Storage = localStorage.getItem("searchedlist")
   ? JSON.parse(localStorage.getItem("searchedlist"))
   : [];
@@ -102,14 +104,23 @@ function Weather(para1) {
         var Temp = data["main"]["temp"];
         var Wind = data["wind"]["speed"];
         var Humidity = data["main"]["humidity"];
-        var icon = data.weather[0]["icon"];
 
         // Variables/parameters displayed as described in function Grabinfo
-        GrabInfo(CityMain, Date, Temp, Wind, Humidity, icon);
-        console.log(icon);
-        console.log(CityMain);
-        console.log(Date);
-        console.log(data);
+        GrabInfo(CityMain, Date, Temp, Wind, Humidity);
+
+        // ICON Link and image
+        let Iconlink = document.createElement("img");
+        Iconlink.setAttribute(
+          "src",
+          `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`
+        );
+        iconbox.append(Iconlink);
+
+        // ---------------------------------------------------------------------------------------------------
+        // Below is for UV function
+        let lat = data.coord.lat;
+        let lon = data.coord.lon;
+        UVJOB(lat, lon);
       });
     }
 
@@ -118,8 +129,8 @@ function Weather(para1) {
     // 5 DAY FORECAST
 
     // The below decide where each parameter will be printed..
-    function some(para1, para2, para3, para4, para5) {
-      $(".forecast").text(para1 + para5);
+    function forecasting(para1, para2, para3, para4, para5) {
+      $(".forecast").text(para1);
       $(".datefore").text(para2);
       $(".tempforecast").text(para3 + "C");
       $(".humforecast").text("Hum : " + para4 + "%");
@@ -133,30 +144,33 @@ function Weather(para1) {
       fetch(url).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
+            console.log(data.list);
+            // read this console log -- you need 24hour not every 3 hours
+            // ICON
+            let Iconlink2 = document.createElement("img");
+            Iconlink2.setAttribute(
+              "src",
+              `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
+            );
+            iconsection.append(Iconlink2);
+
+            // -------------------------------------------------------------------------------------------
+            //  Give me data for 5 days...
             for (i = 0; i < 5; i++) {
               var Cityname = data["city"]["name"];
-              var datefore = moment.unix(data.list[0].dt);
+              var datefore = moment.unix(data.list[i].dt);
+              // var datef = moment.unix(data.list[8].dt);
               var foretemp = data.list[0]["main"]["temp"];
               var forehum = data.list[0]["main"]["humidity"];
               var forewind = data.list[0]["wind"]["speed"];
-              var icons = data.list[0].weather[0]["icon"];
 
               // Variables/parameters displayed as described in function Grabinfo
-              some(Cityname, datefore, foretemp, forehum, forewind, icons);
-              console.log(icons);
+              forecasting(Cityname, datefore, foretemp, forehum, forewind);
+
               console.log(data);
               console.log(datefore);
-              console.log(foretemp);
-              console.log(forehum);
-
-              // ICON
-              let weathicon = document.createElement("img");
-              weathicon.setAttribute(
-                "src",
-                "https://openweathermap.org/img/wn/" +
-                  data.list[0].weather[0]["icon"] +
-                  "@2x.png"
-              );
+              // console.log(foretemp);
+              // console.log(forehum);
             }
           });
         }
@@ -165,118 +179,23 @@ function Weather(para1) {
   });
 }
 
-// function trying() {
-//   let lat = data["coord"]["lat"];
-//   let lon = data.coord["lon"];
+// Pull UVI
 
-//   let UVQueryURL =
-//     "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" +
-//     lat +
-//     "&lon=" +
-//     lon +
-//     "&appid=" +
-//     apikey +
-//     "&cnt=1";
-//   axios.get(UVQueryURL);
+// Paint UV in UV box
+function UVpaste(UVi) {
+  $("#uvbox").text("UV Index: " + UVi + " Currently");
+}
 
-//   fetch(UVQueryURL).then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         let UVIndex = document.getElementById("uvbox");
-//         UVIndex.innerHTML = data[0].value;
-//         currentUVEl.innerHTML = "UV Index: ";
-//         currentUVEl.append(UVIndex);
+// Pull lat and lon from above variables..and give me the UV index
+function UVJOB(lon, lat) {
+  var uvurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alert&appid=dbb45a93ce752788381a20675a5a9c02`;
 
-//         console.log(UVQueryURL);
-//       });
-//     }
-//   });
-// }
-
-// ["list"]["main"]["temp"];
-// ------------------------------------------------------------------------------------------
-
-// ---------------------------------------------------------------------------------------
-// do local storage --
-
-// GIVES ME UVI BUT I HAVE TO ENTER CITY LONGITUDE AND LATITUDE
-// getApi();
-// function getApi() {
-//   navigator.geolocation.getCurrentPosition((success) => {
-//     let { latitude, longitude } = success.coords;
-
-//     fetch(
-//       `https://api.openweathermap.org/data/2.5/onecall?lat=40.7648&lon=-73.9808&units=metrics&appid=ead377de503e1fdb3cf49c83815322d2`
-//     )
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-
-//         var cityvalue = data["timezone"];
-//         console.log(cityvalue);
-
-//         var humidityEl = data["current"]["humidity"];
-//         console.log(humidityEl);
-
-//         var tempvalue = data["current"]["temp"];
-//         console.log(tempvalue);
-
-//         var windvalue = data["current"]["wind_speed"];
-//         console.log(windvalue);
-
-//         var uvvalue = data["current"]["uvi"];
-//         console.log(uvvalue);
-
-//         var Info = document.querySelector("#cityname");
-//         var Temp = document.querySelector("#tempbox");
-//         var Wind = document.querySelector("#windbox");
-//         var humidity = document.querySelector("#humbox");
-//         var UV = document.querySelector("#uvbox");
-
-//         Info.innerHTML = cityvalue;
-//         Temp.innerHTML = tempvalue;
-//         Wind.innerHTML = windvalue;
-//         humidity.innerHTML = humidityEl;
-//         UV.innerHTML = uvvalue;
-//       });
-//   });
-// }
-
-// HAVE TO JUST CHANGE CITY NAME BUT NO UVI
-
-// fetchButton.addEventListener("click", function () {
-// fetch( "https://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&appid=ead377de503e1fdb3cf49c83815322d2")
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   // .then(function (data) {
-
-//   // })
-//   .then((data) => {
-//     console.log(data);
-
-//     var cityvalue = data["name"];
-//     console.log(cityvalue);
-//     var humidityEl = data["main"]["humidity"];
-//     console.log(humidityEl);
-//     var tempvalue = data["main"]["temp"];
-//     console.log(tempvalue);
-//     var windvalue = data["wind"]["speed"];
-//     console.log(windvalue);
-//     var Info = document.querySelector("#cityname");
-//     var Temp = document.querySelector("#tempbox");
-//     var Wind = document.querySelector("#windbox");
-//     var humidity = document.querySelector("#humbox");
-
-//     Info.innerHTML = cityvalue;
-//     Temp.innerHTML = tempvalue;
-//     Wind.innerHTML = windvalue;
-//     humidity.innerHTML = humidityEl;
-//   });
-
-// console.log(data);
-// '+CityName.value+'
-// figure out how toget date
-
-// window.moment(timezone * 1000).format("HH:mm a")
-//
+  fetch(uvurl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        var UVi = data.current.uvi;
+        UVpaste(UVi);
+      });
+    }
+  });
+}

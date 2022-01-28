@@ -40,6 +40,10 @@ h2 {
   color: white;
 }
 
+#citynames {
+  color: white;
+}
+
 .infobox {
   width: 20rem;
   height: 30rem;
@@ -79,7 +83,7 @@ h2 {
 }
 
 #iconbox {
-  background-color: yellow;
+  /* background-color: yellow; */
   height: 5rem;
   margin-left: 3rem;
   margin-top: 1rem;
