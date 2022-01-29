@@ -14,8 +14,10 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
   ></script>
 
-    <header>My Weather Dashboard</header>
-    <div id ="time"><span id ="am-pm"> </span></div>
+    <header>My Weather Dashboard - 
+      Around the World (on Click)
+      <div id ="today"></div>
+    </header>
   </head>
 <body>
   <!-- Main box, Where the info will go -->
@@ -27,7 +29,7 @@
      <div class = "infodetail" id= "tempbox"></div>
     <div class = "infodetail" id= "windbox"></div>
    <div class = "infodetail" id="humbox"></div>
-<div class = "infodetail" id ="uvbox">UV</div>
+<div class = "infodetail" id ="uvbox"></div>
 
   </div>
 
@@ -47,11 +49,12 @@
             
               <h3>Your Searched Cities:</h3>
               <br />
-              <ul class="list-group" id="searchedlist">
+              
+              <ul class="list-group" id="searchedlist"></ul>
+            </ul>
+              </div>
+              </div>
             
-              </ul>
-              </div>
-              </div>
               </form>
               
 

@@ -1,16 +1,17 @@
 //Variables..
-
+// Todays date
+var today = moment().format("MMMM Do YYYY, h:mm:ss a");
+$("#today").text(today);
 var formEl = $("#city-form");
 var CityName = $("#citynames");
 var CityList = $("#searchedlist");
 var SearchBtn = $("#SearchBtn");
-// var searchedlist = $("#searchedlist");
 var apikey = "ead377de503e1fdb3cf49c83815322d2";
 var iconsection = $(".iconfore");
-
-let Storage = localStorage.getItem("searchedlist")
+var Storage = localStorage.getItem("searchedlist")
   ? JSON.parse(localStorage.getItem("searchedlist"))
   : [];
+
 console.log(Storage);
 
 // ---------------------------------------------------------------------------------------
@@ -84,7 +85,7 @@ $(document).on("click", "li", function () {
 function GrabInfo(para1, para2, para3, para4, para5, para6) {
   $("#cityname").text(para1);
   $("#todaysdate").text(para2);
-  $("#tempbox").text(para3 + "C");
+  $("#tempbox").text(para3 + "°");
   $("#windbox").text("Wind : " + para4 + " MPH");
   $("#humbox").text("Humidity : " + para5 + " %");
   $("#iconbox").text(para6);
@@ -101,7 +102,7 @@ function Weather(para1) {
         // Each parameter based on 'position' in url..
         var CityMain = data["name"];
         var Date = moment().format("MMMM Do YYYY");
-        var Temp = data["main"]["temp"];
+        var Temp = `${Math.floor(data["main"]["temp"])}`;
         var Wind = data["wind"]["speed"];
         var Humidity = data["main"]["humidity"];
 
@@ -132,9 +133,9 @@ function Weather(para1) {
     function forecasting(para1, para2, para3, para4, para5) {
       $(".forecast").text(para1);
       $(".datefore").text(para2);
-      $(".tempforecast").text(para3 + "C");
+      $(".tempforecast").text("Temp : " + para3 + "°C");
       $(".humforecast").text("Hum : " + para4 + "%");
-      $(".windforecast").text("Wind : " + para5 + " MPH");
+      $(".windforecast").text("Wind : " + para5 + " mph");
     }
 
     //Grabbing info from open weather 5 Day forecast API..
@@ -145,7 +146,7 @@ function Weather(para1) {
         if (response.ok) {
           response.json().then(function (data) {
             console.log(data.list);
-            // read this console log -- you need 24hour not every 3 hours
+
             // ICON
             let Iconlink2 = document.createElement("img");
             Iconlink2.setAttribute(
@@ -156,11 +157,10 @@ function Weather(para1) {
 
             // -------------------------------------------------------------------------------------------
             //  Give me data for 5 days...
-            for (i = 0; i < 5; i++) {
+            for (i = 0; i < data.list.length; i++) {
               var Cityname = data["city"]["name"];
-              var datefore = moment.unix(data.list[i].dt);
-              // var datef = moment.unix(data.list[8].dt);
-              var foretemp = data.list[0]["main"]["temp"];
+              var datefore = moment.unix(data.list[0].dt);
+              var foretemp = `${Math.floor(data.list[0]["main"]["temp"])}`;
               var forehum = data.list[0]["main"]["humidity"];
               var forewind = data.list[0]["wind"]["speed"];
 
@@ -169,8 +169,6 @@ function Weather(para1) {
 
               console.log(data);
               console.log(datefore);
-              // console.log(foretemp);
-              // console.log(forehum);
             }
           });
         }
