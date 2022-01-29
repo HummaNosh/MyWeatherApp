@@ -158,9 +158,10 @@ function Weather(para1) {
             // -------------------------------------------------------------------------------------------
 
             //  Give me data for 5 days...
-            for (i = 0; i < 5; i++) {
+            console.log(data.daily);
+            for (i = 0; i < data.daily.length; i++) {
               var Cityname = data["timezone"];
-              var datefore = moment.unix(data.daily[4].dt);
+              var datefore = moment.unix(data.daily[i].dt);
               var foretemp = `${Math.floor(data.current["temp"])}`;
               var forehum = data.current["humidity"];
               var forewind = data.current["wind_speed"];
@@ -168,8 +169,8 @@ function Weather(para1) {
               // Variables/parameters displayed as described in function Grabinfo
               forecasting(Cityname, datefore, foretemp, forehum, forewind);
 
+              console.log(i);
               console.log(datefore);
-              console.log(data);
             }
           });
         }
