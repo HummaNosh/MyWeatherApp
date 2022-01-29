@@ -40,7 +40,7 @@
             <div class="cities">
               <div id="box">
                 <h2>Search for your City</h2>
-                <input type="text" class="form-control" id="citynames" placeholder="Search for cities.." />
+                <input type="text" class="form-control" id="citynames" placeholder="Press down button" />
               <button type="submit" value="search" id = "SearchBtn">
                 Search
               </button>
@@ -61,7 +61,7 @@
 <!-- // Drop down auto options.... -->
 <script>
               $(function () {
-                var skillNames = [
+                var CityNames = [
                   "Austin",
                   "Aberdeen",
                   "Liverpool",
@@ -81,7 +81,7 @@
                   "Denver",
                 ];
                 $("#citynames").autocomplete({
-                  source: skillNames,
+                  source: CityNames,
                 });
               });</script>
 </form>

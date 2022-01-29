@@ -47,10 +47,6 @@ h2 {
   color: white;
 }
 
-#citynames {
-  color: white;
-}
-
 .infobox {
   width: 20rem;
   height: 30rem;
@@ -222,8 +218,7 @@ textarea {
   margin-top: 1rem;
   margin-left: 1rem;
   padding: 12px 20px 12px 40px;
-  background-color: rgb(67, 140, 67);
-  color: white;
+  background-color: rgb(100, 167, 100);
 }
 
 .list-group-item {
