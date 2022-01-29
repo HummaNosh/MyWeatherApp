@@ -24,4 +24,4 @@ THEN I am again presented with current and future conditions for that city
 
 A rough screenshot of the website is below:
 
-Deployed Link:
+Deployed Link: https://hummanosh.github.io/MyWeatherApp/
