@@ -98,7 +98,6 @@ function Weather(para1) {
   fetch(apiurl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        Display(para1);
         // Each parameter based on 'position' in url..
         var CityMain = data["name"];
         var Date = moment().format("MMMM Do YYYY");
@@ -122,6 +121,7 @@ function Weather(para1) {
         let lat = data.coord.lat;
         let lon = data.coord.lon;
         UVJOB(lat, lon);
+        Display(lat, lon);
       });
     }
 
@@ -139,36 +139,37 @@ function Weather(para1) {
     }
 
     //Grabbing info from open weather 5 Day forecast API..
-    function Display(para1) {
-      var url = `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&units=metric&appid=${apikey}`;
-
+    function Display(lat, lon) {
+      var url = `https://api.openweathermap.org/data/2.5/onecall?&lat=${lat}&lon=${lon}&units=metric&appid=${apikey}`;
+      // `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&units=metric&appid=${apikey}`;
       fetch(url).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
-            console.log(data.list);
+            console.log(data);
 
             // ICON
             let Iconlink2 = document.createElement("img");
             Iconlink2.setAttribute(
               "src",
-              `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
+              `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`
             );
             iconsection.append(Iconlink2);
 
             // -------------------------------------------------------------------------------------------
+
             //  Give me data for 5 days...
-            for (i = 0; i < data.list.length; i++) {
-              var Cityname = data["city"]["name"];
-              var datefore = moment.unix(data.list[0].dt);
-              var foretemp = `${Math.floor(data.list[0]["main"]["temp"])}`;
-              var forehum = data.list[0]["main"]["humidity"];
-              var forewind = data.list[0]["wind"]["speed"];
+            for (i = 0; i < 5; i++) {
+              var Cityname = data["timezone"];
+              var datefore = moment.unix(data.daily[4].dt);
+              var foretemp = `${Math.floor(data.current["temp"])}`;
+              var forehum = data.current["humidity"];
+              var forewind = data.current["wind_speed"];
 
               // Variables/parameters displayed as described in function Grabinfo
               forecasting(Cityname, datefore, foretemp, forehum, forewind);
 
-              console.log(data);
               console.log(datefore);
+              console.log(data);
             }
           });
         }
@@ -186,7 +187,7 @@ function UVpaste(UVi) {
 
 // Pull lat and lon from above variables..and give me the UV index
 function UVJOB(lon, lat) {
-  var uvurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alert&appid=dbb45a93ce752788381a20675a5a9c02`;
+  var uvurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}`;
 
   fetch(uvurl).then(function (response) {
     if (response.ok) {
