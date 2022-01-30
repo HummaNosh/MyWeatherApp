@@ -47,25 +47,25 @@ var PrintCities = function (name) {
 
 // Picks up the value of user input in search box...
 function history() {
-  Storage.push(CityName.value);
+  Storage.push(citynames.value);
   localStorage.setItem("searchedlist", JSON.stringify(Storage));
-  listBuilder(CityName.value);
-  CityName.value = "";
+  listBuilder(citynames.value);
+  citynames.value = "";
 }
 // Create a list of last searched items with a delete button..
 let listBuilder = (text) => {
   var cityEl = document.createElement("li");
-  cityEl.innerHTML = text + ' <button onclick="deleteNote(this)">x</button>';
+  cityEl.innerHTML = text + ' <button onclick="deletebtn(this)">x</button>';
   CityList.append(cityEl);
 };
 // Save items even after refreshing through looping..
-let getNotes = JSON.parse(localStorage.getItem("searchedlist"));
-getNotes.forEach((cityEl) => {
+let getsearched = JSON.parse(localStorage.getItem("searchedlist"));
+getsearched.forEach((cityEl) => {
   listBuilder(cityEl);
 });
 
 // Deleting the last searched via button..
-let deleteNote = (btn) => {
+let deletebtn = (btn) => {
   let btnEl = btn.parentNode;
   let index = [...btnEl.parentElement.children].indexOf(btnEl);
   Storage.splice(index, 1);
@@ -142,7 +142,7 @@ function Display(lat, lon) {
           // Give me the looped date in the daily div..then create a div for the icons and info to go in.....
           $("#Daily").append(`${moment
             .unix(data.daily[i].dt)
-            .format("dddd MMM YYYY")}
+            .format("ddd MMM Do YYYY")}
 
           <div class="foresec">
           <img class ="foreicon" alt ="weather" src="https://openweathermap.org/img/wn/${
