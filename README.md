@@ -23,5 +23,6 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 A rough screenshot of the website is below:
+![image](https://user-images.githubusercontent.com/93604239/151683110-99fb46bf-cc30-4eff-838b-7481fa1c2968.png)
 
 Deployed Link: https://hummanosh.github.io/MyWeatherApp/
