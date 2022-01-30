@@ -100,7 +100,7 @@ function Weather(para1) {
       response.json().then(function (data) {
         // Each parameter based on 'position' in url..
         var CityMain = data["name"];
-        var Date = moment().format("MMMM Do YYYY");
+        var Date = moment().format("dddd MMMM Do YYYY");
         var Temp = `${Math.floor(data["main"]["temp"])}`;
         var Wind = data["wind"]["speed"];
         var Humidity = data["main"]["humidity"];
@@ -124,60 +124,41 @@ function Weather(para1) {
         Display(lat, lon);
       });
     }
+  });
+}
 
-    // ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 
-    // 5 DAY FORECAST
+// 5 DAY FORECAST
 
-    // The below decide where each parameter will be printed..
-    function forecasting(para1, para2, para3, para4, para5) {
-      $(".forecast").text(para1);
-      $(".datefore").text(para2);
-      $(".tempforecast").text("Temp : " + para3 + "°C");
-      $(".humforecast").text("Hum : " + para4 + "%");
-      $(".windforecast").text("Wind : " + para5 + " mph");
-    }
+//Grabbing info from open weather One call API..
+function Display(lat, lon) {
+  var url = `https://api.openweathermap.org/data/2.5/onecall?&lat=${lat}&lon=${lon}&units=metric&appid=${apikey}`;
 
-    //Grabbing info from open weather 5 Day forecast API..
-    function Display(lat, lon) {
-      var url = `https://api.openweathermap.org/data/2.5/onecall?&lat=${lat}&lon=${lon}&units=metric&appid=${apikey}`;
-      // `https://api.openweathermap.org/data/2.5/forecast?q=${para1}&units=metric&appid=${apikey}`;
-      fetch(url).then(function (response) {
-        if (response.ok) {
-          response.json().then(function (data) {
-            console.log(data);
+  fetch(url).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        for (i = 1; i < 6; i++) {
+          // Give me the looped date in the daily div..then create a div for the icons and info to go in.....
+          $("#Daily").append(`${moment
+            .unix(data.daily[i].dt)
+            .format("dddd MMM YYYY")}
 
-            // ICON
-            let Iconlink2 = document.createElement("img");
-            Iconlink2.setAttribute(
-              "src",
-              `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`
-            );
-            iconsection.append(Iconlink2);
-
-            // -------------------------------------------------------------------------------------------
-
-            //  Give me data for 5 days...
-            console.log(data.daily);
-            for (i = 0; i < data.daily.length; i++) {
-              var Cityname = data["timezone"];
-              var datefore = moment.unix(data.daily[i].dt);
-              var foretemp = `${Math.floor(data.current["temp"])}`;
-              var forehum = data.current["humidity"];
-              var forewind = data.current["wind_speed"];
-
-              // Variables/parameters displayed as described in function Grabinfo
-              forecasting(Cityname, datefore, foretemp, forehum, forewind);
-
-              console.log(i);
-              console.log(datefore);
-            }
-          });
+          <div class="foresec">
+          <img class ="foreicon" alt ="weather" src="https://openweathermap.org/img/wn/${
+            data.current.weather[0].icon
+          }.png">
+          <p>Temp: ${Math.floor(data.daily[i].temp["day"])} °C </p>
+          <p>Wind: ${data.daily[i]["wind_speed"]} mph </p>
+          <p>Humidity: ${data.daily[i]["humidity"]} % </p>
+          </div>`);
         }
       });
     }
   });
 }
+
+//  ---------------------------------------------------------------------------------------
 
 // Pull UVI
 

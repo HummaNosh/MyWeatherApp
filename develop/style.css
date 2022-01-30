@@ -1,8 +1,8 @@
 header {
   background-image: linear-gradient(
     to bottom right,
-    rgba(78, 78, 214, 0.51),
-    blue
+    rgba(244, 248, 24, 0.66),
+    green
   );
   height: 3rem;
   color: white;
@@ -25,7 +25,9 @@ body {
 }
 
 p {
-  margin-left: 3rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0;
 }
 
 h3 {
@@ -51,13 +53,13 @@ h2 {
   width: 20rem;
   height: 30rem;
   margin-top: 2rem;
-  margin-left: 25rem;
+  margin-left: 32rem;
 }
 
 #cityname {
   font-size: 55px;
   font-weight: bold;
-  text-align: center;
+  margin-left: 5rem;
 }
 
 .infodetail {
@@ -66,6 +68,7 @@ h2 {
   height: fit-content;
   border: none;
   font-size: 20px;
+  margin-left: 6rem;
 }
 .infodetails {
   color: white;
@@ -81,13 +84,13 @@ h2 {
   font-weight: bold;
   text-align: center;
   margin-top: 1rem;
-  margin-left: 4rem;
+  margin-left: 10rem;
   margin-bottom: 1rem;
 }
 
 #iconbox {
   height: 5rem;
-  margin-left: 3rem;
+  margin-left: 8rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 5rem;
@@ -100,6 +103,9 @@ h2 {
   margin-left: -2rem;
 }
 
+#todaysdate {
+  width: 25rem;
+}
 textarea {
   width: fit-content;
   height: fit-content;
@@ -109,106 +115,29 @@ textarea {
 #Daily {
   display: flex;
   flex-direction: column;
-  background-color: blue;
-  width: 12rem;
-  height: 21rem;
+  color: white;
+  width: 20rem;
+  height: 50rem;
   padding: 0;
-  margin-left: 55rem;
-  margin-top: -45rem;
+  margin-left: 70rem;
+  margin-top: -46rem;
   border: dashed black;
 }
 
-#Daily2 {
-  background-color: orange;
-  display: flex;
-  flex-direction: column;
-  width: 12rem;
-  height: 21rem;
-  border: dashed black;
-  margin-left: 68rem;
-  margin-top: -21.4rem;
-}
-#Daily3 {
-  background-color: yellow;
-  display: flex;
-  flex-direction: column;
-  width: 12rem;
-  height: 21rem;
-  border: dashed black;
-  margin-left: 81rem;
-  margin-top: -21.4rem;
-}
-#Daily4 {
-  background-color: green;
-  display: flex;
-  flex-direction: column;
-  width: 12rem;
-  height: 21rem;
-  border: dashed black;
-  margin-left: 61rem;
-  margin-top: 1rem;
-}
-#Daily5 {
-  background-color: grey;
-  display: flex;
-  flex-direction: column;
-  width: 12rem;
-  height: 21rem;
-  border: dashed black;
-  margin-left: 75rem;
-  margin-top: -21.4rem;
-}
-.forecast {
-  background-color: purple;
-  height: fit-content;
-  width: 10rem;
-  text-align: center;
-  font-size: 40px;
-  margin-top: 1rem;
-  word-wrap: break-word;
+.foreicon {
+  width: fit-content;
   margin-left: 1rem;
 }
 
-.datefore {
-  background-color: orange;
+.foresec {
+  color: white;
   width: 10rem;
-  font-size: 20px;
-  height: 5rem;
-  text-align: center;
-  margin-left: 1rem;
+  height: 15rem;
+  margin-left: 10rem;
+  margin-top: -1.5rem;
+  padding: 10px;
 }
 
-.tempforecast {
-  background-color: white;
-  width: 10rem;
-  font-size: 20px;
-  height: 2rem;
-  text-align: center;
-  margin-left: 1rem;
-}
-
-.humforecast {
-  background-color: pink;
-  width: 10rem;
-  font-size: 20px;
-  height: 2rem;
-  text-align: center;
-  margin-left: 1rem;
-}
-
-.windforecast {
-  background-color: brown;
-  height: 2rem;
-  width: 10rem;
-  font-size: 20px;
-  margin-left: 1rem;
-}
-
-.iconfore img {
-  width: 5rem;
-  height: 5rem;
-  margin-left: 4rem;
-}
 /* ---------------------------------------------------------------------------------------- */
 
 #citynames {
