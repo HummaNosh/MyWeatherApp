@@ -1,6 +1,6 @@
 # MyWeatherApp
 
-The purpose of this project was to create a Weather dashboard which provides a current and 5 day forecast, using HTML, CSS, Moment JS, Javascript and JQuery.
+The purpose of this project was to create a Weather dashboard which provides a current and 5 day forecast, using HTML, CSS, APIS,  Moment JS, Javascript and JQuery.
 
 The User story is below:
 
